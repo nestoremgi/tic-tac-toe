@@ -31,9 +31,7 @@ function Board() {
     const [isXNext, setIsXNext] = useState(true);
 
     function handleClick(i) {
-        console.log("Clicked!")
-        if(squares[i] || confirmWinner(squares)) { 
-            console.log("There is a winner!")
+        if (squares[i] || confirmWinner(squares)) { 
             return;
         }
     
@@ -50,11 +48,12 @@ function Board() {
     }
     
     //Re render execute this code
-    let winner = confirmWinner(squares);
+    const winner = confirmWinner(squares);
     let status;
-    if(winner) {
+
+    if (winner) {
         status = 'Winner ' + winner;
-    }else {
+    } else {
         status = 'Next Player: ' + (isXNext? "X" : "O");
     }
     
@@ -81,6 +80,8 @@ function Board() {
 };
 
 export default function Game() {
+    const [history, setHistory] = useState(Array(9).fill(null));
+    
     return(
         <Board />
     );
