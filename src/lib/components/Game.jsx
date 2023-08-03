@@ -36,6 +36,7 @@ function Board() {
             console.log("There is a winner!")
             return;
         }
+    
         const nextSquares = squares.slice();
 
         if(isXNext) {
@@ -46,11 +47,20 @@ function Board() {
             setSquares(nextSquares);
         }
         setIsXNext(!isXNext); 
-        console.log(isXNext);
+    }
+    
+    //Re render execute this code
+    let winner = confirmWinner(squares);
+    let status;
+    if(winner) {
+        status = 'Winner ' + winner;
+    }else {
+        status = 'Next Player: ' + (isXNext? "X" : "O");
     }
     
     return (
         <div className="game">
+            <h1>{status}</h1>
             <div className="row">
                 <Square value={squares[0]} onClickSquare={() => { handleClick(0) }} />
                 <Square value={squares[1]} onClickSquare={() => { handleClick(1) }} />
